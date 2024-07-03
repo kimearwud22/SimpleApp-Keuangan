@@ -7,6 +7,8 @@
     $banner= getSections('_banner');
     $logo= getSections('_logo');
     $portofolio = getPortofolio();
+    $post = getBlogPost();
+    $slug = getBlogPostBySlug('slug');
 @endphp
 <!DOCTYPE html>
 <html lang="en">
@@ -35,7 +37,6 @@
     <link href="assets/css/owl.theme.default.min.css" rel="stylesheet" />
     <link href="assets/css/animate.css" rel="stylesheet" />
     <link href="assets/css/validnavs.css" rel="stylesheet" />
-    <link href="assets/css/helper.css" rel="stylesheet" />
     <link href="assets/css/style.css" rel="stylesheet" />
     <link href="style.css" rel="stylesheet">
     <link href="assets/css/responsive.css" rel="stylesheet" />
@@ -52,7 +53,7 @@
 
 <body>
 
-  <!-- Preloader Start -->
+    <!-- Preloader Start -->
     <div class="se-pre-con"></div>
     <!-- Preloader Ends -->
 
@@ -127,213 +128,172 @@
     </header>
     <!-- End Header -->
 
-   <!-- Start Banner 
+    <!-- Start Breadcrumb 
     ============================================= -->
-    <div class="banner-area auto-height bg-fixed banner-style-four text-default" style="background-image: url(assets/img/shape/1.jpg);">
-        <div class="shape-bottom" style="background-image: url(assets/img/shape/44.png);"></div>
+    <div class="breadcrumb-area shadow dark bg-cover text-center text-light" style="background-image: url(assets/img/shape/5.png);">
         <div class="container">
-            <div class="double-items">
-                <div class="row align-center">
+            <div class="row">
+                <div class="col-lg-12 col-md-12">
+                    <h1>Blog Grid</h1>
+                    <ul class="breadcrumb">
+                        <li><a href="#"><i class="fas fa-home"></i> Home</a></li>
+                        <li><a href="#">Blog</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Breadcrumb -->
 
-                    <div class="col-lg-6 info">
-                        <h4 class="wow fadeInRight"><strong># Proggrammer </strong> Buat Aplikasimu Lebih Hebat</h4>
-                        <h2 class="wow fadeInLeft" data-wow-defaul="300ms">Welcome to My Website </h2>
-                        <p class="wow fadeInLeft" data-wow-delay="500ms">
-                            Ini adalah portofolio kime sebagai full-stack developer yang berpengalaman lebih dari 3 tahun.
-                        </p>
-                        <a class="btn btn-md circle btn-gradient effect wow fadeInUp" data-wow-delay="700ms" href="#">Selengkapnya <i class="fas fa-angle-right"></i></a>
+    <!-- Start Blog
+    ============================================= -->
+    <div class="blog-area full-blog blog-standard full-blog grid-colum default-padding">
+        <div class="container">
+            <div class="blog-items">
+                <div class="blog-content">
+                    <div class="blog-item-box">
+                        <div class="row">
+                            @foreach ($post as $item)
+                            <!-- Single Item -->
+                            <div class="col-lg-6 col-md-6 single-item">
+                                <div class="item">
+                                    <div class="thumb">
+                                        <a href="#"><img src={{ Storage::url($item->image)}} alt="Thumb"></a>
+                                        <div class="date"><strong>{{date('d', strtotime($item->created_at))}}</strong> <span>{{date('M', strtotime($item->created_at))}}</span></div>
+                                    </div>
+                                    <div class="info">
+                                        <div class="meta">
+                                            <ul>
+                                                <li>
+                                                    <a href="#"><i class="fas fa-user"></i> Admin</a>
+                                                </li>
+                                                <li>
+                                                    <a href="#"><i class="fas fa-comments"></i> 27 Comments</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <h3>
+                                            <a href="#">{{$item->title}}</a>
+                                        </h3>
+                                        <p>
+                                            {{$item->content}}
+                                        </p>
+                                        <a class="btn circle btn-theme-border btn-sm" href="{{ route('blog.show', $item->slug) }}">Read More</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- End Single Item -->
+                            @endforeach
+                            <!-- Single Item -->
+                            <div class="col-lg-6 col-md-6 single-item">
+                                <div class="item">
+                                    <div class="thumb">
+                                        <a href="#"><img src="assets/img/800x600.png" alt="Thumb"></a>
+                                        <div class="date"><strong>18</strong> <span>Aug</span></div>
+                                    </div>
+                                    <div class="info">
+                                        <div class="meta">
+                                            <ul>
+                                                <li>
+                                                    <a href="#"><i class="fas fa-user"></i> Admin</a>
+                                                </li>
+                                                <li>
+                                                    <a href="#"><i class="fas fa-comments"></i> 13 Comments</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <h3>
+                                            <a href="#">Agreement far boy otherwise rapturous incommode. </a>
+                                        </h3>
+                                        <p>
+                                            One order all scale sense her gay style wrote. Incommode our not one ourselves residence. Shall there whose those stand she end. So unaffected partiality indulgence dispatched to of celebrated. 
+                                        </p>
+                                        <a class="btn circle btn-theme-border btn-sm" href="#">Read More</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- End Single Item -->
+                            <!-- Single Item -->
+                            <div class="col-lg-6 col-md-6 single-item">
+                                <div class="item">
+                                    <div class="thumb">
+                                        <a href="#"><img src="assets/img/800x600.png" alt="Thumb"></a>
+                                        <div class="date"><strong>05</strong> <span>Mar</span></div>
+                                    </div>
+                                    <div class="info">
+                                        <div class="meta">
+                                            <ul>
+                                                <li>
+                                                    <a href="#"><i class="fas fa-user"></i> Admin</a>
+                                                </li>
+                                                <li>
+                                                    <a href="#"><i class="fas fa-comments"></i> 30 Comments</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <h3>
+                                            <a href="#">Attachment resolution sentiments admiration me. </a>
+                                        </h3>
+                                        <p>
+                                            One order all scale sense her gay style wrote. Incommode our not one ourselves residence. Shall there whose those stand she end. So unaffected partiality indulgence dispatched to of celebrated. 
+                                        </p>
+                                        <a class="btn circle btn-theme-border btn-sm" href="#">Read More</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- End Single Item -->
+                            <!-- Single Item -->
+                            <div class="col-lg-6 col-md-6 single-item">
+                                <div class="item">
+                                    <div class="thumb">
+                                        <a href="#"><img src="assets/img/800x600.png" alt="Thumb"></a>
+                                        <div class="date"><strong>22</strong> <span>Jul</span></div>
+                                    </div>
+                                    <div class="info">
+                                        <div class="meta">
+                                            <ul>
+                                                <li>
+                                                    <a href="#"><i class="fas fa-user"></i> Admin</a>
+                                                </li>
+                                                <li>
+                                                    <a href="#"><i class="fas fa-comments"></i> 43 Comments</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <h3>
+                                            <a href="#">Add matter family active mutual put wishes happen. </a>
+                                        </h3>
+                                        <p>
+                                            One order all scale sense her gay style wrote. Incommode our not one ourselves residence. Shall there whose those stand she end. So unaffected partiality indulgence dispatched to of celebrated. 
+                                        </p>
+                                        <a class="btn circle btn-theme-border btn-sm" href="#">Read More</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- End Single Item -->
+                        </div>
+                        
+                        <!-- Pagination -->
+                        <div class="row">
+                            <div class="col-md-12 pagi-area text-center">
+                                <nav aria-label="navigation">
+                                    <ul class="pagination">
+                                        <li class="page-item"><a class="page-link" href="#"><i class="fas fa-angle-double-left"></i></a></li>
+                                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                        <li class="page-item"><a class="page-link" href="#"><i class="fas fa-angle-double-right"></i></a></li>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Blog -->
 
-                     <div class="col-lg-6 thumb wow fadeInRight" data-wow-delay="900ms">
-                        <img src={{Storage::url($banner->image)}} alt="Thumb">
-                    </div>
-                    
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- End Banner -->
-<!-- Star About Area
-    ============================================= -->
-    <div id="about" class="about-area bg-gray default-padding">
-        <!-- Shape -->
-        <div class="fixed-shape-left">
-            <img src="assets/img/shape/9.png" alt="Shape">
-        </div>
-        <!-- End Shape -->
-        <div class="container">
-            <div class="about-items">
-                <div class="row align-center">
-                    <div class="col-lg-6">
-                        <div class="thumb">
-                            <img class="wow fadeInLeft" data-wow-delay="300ms" src="assets/img/dashboard/5.png" alt="Thumb">
-                            <img class="wow fadeInUp" data-wow-delay="500ms" src="assets/img/dashboard/6.png" alt="Thumb">
-                        </div>
-                    </div>
-                    <div class="col-lg-6 info wow fadeInRight">
-                        <h4>Story about us</h4>
-                        <h2>Perfect place to Design, Development, Software.</h2>
-                        <ul>
-                            <li>
-                                <h5>Free Download App</h5>
-                                <p>
-                                    Fruit defer in party me built under first. Forbade him but savings sending ham general. So play do in near park that pain. 
-                                </p>
-                            </li>
-                            <li>
-                                <h5>Trusted and Reliable</h5>
-                                <p>
-                                    Fruit defer in party me built under first. Forbade him but savings sending ham general. So play do in near park that pain. 
-                                </p>
-                            </li>
-                        </ul>
-                        <div class="button">
-                            <a class="btn circle btn-theme-effect btn-sm" href="#">Start free trial</a>
-                            <a href="#">See all features</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- End About Area -->
-    <!-- Start Features
-    ============================================= -->
-    <div id="portofolio" class="features-style-four-area text-center default-padding bottom-less">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8 offset-lg-2">
-                    <div class="site-heading text-center">
-                        <h2>{{ $sitename }}</h2>
-                        <div class="devider"></div>
-                        <p>
-                            Outlived no dwelling denoting in peculiar as he believed. Behaviour excellent middleton be as it curiosity departure ourselves very extreme future. 
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="container">
-            <div class="row">
-                <!-- Signle item -->
-                 @foreach($portofolio as $item)
-                <div class="features-style-four col-lg-4 col-md-6">
-                    <div class="feature-style-four-item">
-                        <div class="icon">
-                            <img src={{ Storage::url($item->image)}} alt="Icon">
-                        </div>
-                        <div class="info">
-                            <h4>{{ $item->title }}</h4>
-                            <p>
-                                {{ $item->description }}
-                            </p>
-                        </div>
-                        <button class="btn btn-md circle btn-gradient effect mt-2" > <a href="{{ $item->link }}">Selengkapnya <i class="fas fa-angle-right"></i></a></button>
-                    </div>
-                </div>
-                @endforeach
-                <!-- End Signle item -->
-                <!-- Signle item -->
-                <!-- <div class="features-style-four col-lg-4 col-md-6">
-                    <div class="feature-style-four-item">
-                        <div class="icon">
-                            <img src="assets/img/icon/app/2.png" alt="Icon">
-                        </div>
-                        <div class="info">
-                            <h4>Easy to Edit</h4>
-                            <p>
-                                Everything melancholy uncommonly but excellence an to impression. ladies she basket season age her uneasy saw.
-                            </p>
-                        </div>
-                    </div>
-                </div> -->
-                <!-- End Signle item -->
-                <!-- Signle item -->
-                <!-- <div class="features-style-four col-lg-4 col-md-6">
-                    <div class="feature-style-four-item">
-                        <div class="icon">
-                            <img src="assets/img/icon/app/3.png" alt="Icon">
-                        </div>
-                        <div class="info">
-                            <h4>Design & Branding</h4>
-                            <p>
-                                Everything melancholy uncommonly but excellence an to impression. ladies she basket season age her uneasy saw.
-                            </p>
-                        </div>
-                    </div>
-                </div> -->
-                <!-- End Signle item -->
-            </div>
-        </div>
-    </div>
-    <!-- End Features -->
-
-    <!-- Start Screnshoot 
-    ============================================= -->
-    <div id="screenshot" class="screenshot-area relative default-padding-bottom carousel-shadow">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8 offset-lg-2">
-                    <div class="site-heading text-center">
-                        <h2>App Screnshoot</h2>
-                        <div class="devider"></div>
-                        <p>
-                            Outlived no dwelling denoting in peculiar as he believed. Behaviour excellent middleton be as it curiosity departure ourselves very extreme future. 
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="container-full">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="screenshot-carousel owl-carousel owl-theme">
-                        <!-- Single item -->
-                        <div class="item">
-                            <div class="thumb">
-                                <img src="assets/img/screenshot/1.png" alt="Thumb">
-                                <a href="assets/img/screenshot/1.png" class="item popup-gallery theme video-play-button">
-                                    <i class="fa fa-plus"></i>
-                                </a>
-                            </div>
-                        </div>
-                        <!-- End Single item -->
-                        <!-- Single item -->
-                        <div class="item">
-                            <div class="thumb">
-                                <img src="assets/img/screenshot/2.png" alt="Thumb">
-                                <a href="assets/img/screenshot/2.png" class="item popup-gallery theme video-play-button">
-                                    <i class="fa fa-plus"></i>
-                                </a>
-                            </div>
-                        </div>
-                        <!-- End Single item -->
-                        <!-- Single item -->
-                        <div class="item">
-                            <div class="thumb">
-                                <img src="assets/img/screenshot/3.png" alt="Thumb">
-                                <a href="assets/img/screenshot/3.png" class="item popup-gallery theme video-play-button">
-                                    <i class="fa fa-plus"></i>
-                                </a>
-                            </div>
-                        </div>
-                        <!-- End Single item -->
-                        <!-- Single item -->
-                        <div class="item">
-                            <div class="thumb">
-                                <img src="assets/img/screenshot/4.png" alt="Thumb">
-                                <a href="assets/img/screenshot/4.png" class="item popup-gallery theme video-play-button">
-                                    <i class="fa fa-plus"></i>
-                                </a>
-                            </div>
-                        </div>
-                        <!-- End Single item -->
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- End Screnshoot -->
     <!-- Start Footer 
     ============================================= -->
     <footer class="bg-dark text-light">
@@ -467,7 +427,7 @@
         <!-- End Footer Bottom -->
     </footer>
     <!-- End Footer -->
-    
+
     <!-- jQuery Frameworks
     ============================================= -->
     <script src="assets/js/jquery-3.6.0.min.js"></script>
