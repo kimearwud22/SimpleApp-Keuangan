@@ -15,6 +15,14 @@ class BlogController extends Controller
         }
         return view('show', compact('blog'));
     }
+
+    public function index()
+    {
+        $blogs = Blog::all();
+        // return from data db
+        return ($blogs);
+
+    }
 }
 
 

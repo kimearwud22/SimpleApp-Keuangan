@@ -24,7 +24,7 @@
     <title>{{$sitename}} - Portofolio</title>
 
     <!-- ========== Favicon Icon ========== -->
-    <link rel="shortcut icon" href="assets/img/favicon.png" type="image/x-icon">
+    <link rel="shortcut icon" href="assets/img/logo/kime.png" type="image/x-icon">
 
     <!-- ========== Start Stylesheet ========== -->
     <link href="assets/css/bootstrap.min.css" rel="stylesheet" />
@@ -136,8 +136,8 @@
                 <div class="col-lg-12 col-md-12">
                     <h1>Blog Grid</h1>
                     <ul class="breadcrumb">
-                        <li><a href="#"><i class="fas fa-home"></i> Home</a></li>
-                        <li><a href="#">Blog</a></li>
+                        <li><a href="/"><i class="fas fa-home"></i> Home</a></li>
+                        <li><a href="/blog">Blog</a></li>
                     </ul>
                 </div>
             </div>

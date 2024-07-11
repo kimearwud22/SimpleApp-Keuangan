@@ -24,3 +24,4 @@ Route::get('/blog', function () {
 });
 
 Route::get('/blog/{slug}',[App\Http\Controllers\BlogController::class, 'show'])->name('blog.show');
+Route::get('/blog',[App\Http\Controllers\BlogController::class, 'index'])->name('blog.index');
